@@ -9,16 +9,22 @@ class Game
   end
 
   def setup
+    # Create map of various locations
     create_map
 
+    # For all prospectors specified by second command line arguement
     for i in 1..@num_prospectors
+      # Create new prospectors
       prospect = Prospector.new(@map, Iterator.new)
+      # Start the game with the current prospector
       start(i, prospect)
+      # Display current prospectors total findings when done
       prospect.display_findings(i)
     end
   end
 
   def create_map
+    # Create map as specified by requirement #3
     @map = [
       ['Enumerable Canyon', 'Duck Type Beach', 'Monkey Patch City'],
       ['Duck Type Beach', 'Enumerable Canyon', 'Matzburg'],
@@ -39,9 +45,11 @@ class Game
     turn = 1
     location = 0
     puts "\nRubyist ##{prospector_count} is starting in #{@map[location][0]}."
+    # While the max number of turns has not been hit
     while turn <= @num_turns
       prospect.go_mining(turn, location)
       turn += 1
+      # Get next location after current location gets nothing
       location = prospect.move_to_next_location(location) unless turn > @num_turns
     end
     turn - 1

@@ -13,14 +13,18 @@ checker = ArguementChecker.new
 correct_input = checker.arguement_check ARGV
 
 if correct_input
+  # Set seed for the rest of the program
   srand(ARGV[0].to_i)
   num_prospectors = ARGV[1].to_i
   num_turns = ARGV[2].to_i
+  # Create new game
   @game = Game.new(num_prospectors, num_turns)
+  # Setup new game
   @game.setup
 else
   show_correct_input
+  # Exit with error code 1 on bad input
   exit 1
 end
-
+# Exit with error code 0 after program finishes
 exit 0

@@ -1,6 +1,7 @@
 # Iterator
 class Iterator
   def get_next_location(location)
+    # Get the index of the current location
     result = 0
     if location == 'Enumerable Canyon'
       result = 0
